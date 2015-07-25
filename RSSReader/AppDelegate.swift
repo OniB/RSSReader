@@ -12,11 +12,29 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private var navigationController: UINavigationController?
+    
+    func application(application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // viewControllerを追加
+        let viewController: ViewController = ViewController()
+            
+        // NavigationControllerを追加（rootViewControllerをviewControllerに設定）
+        navigationController = UINavigationController(rootViewController: viewController)
+            
+        // ステータスバー領域を含む画面のサイズ分のwindowを作成
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+        // windowのrootViewControllerをnavigationControllerに設定
+        self.window?.rootViewController = navigationController
+            
+        // windowが表示されるようにする
+        self.window?.makeKeyAndVisible()
+            
         // Override point for customization after application launch.
         return true
+            
     }
 
     func applicationWillResignActive(application: UIApplication) {
